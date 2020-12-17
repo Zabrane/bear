@@ -39,7 +39,7 @@
 -record(scan_result, {n=0, sumX=0, sumXX=0, sumInv=0, sumLog, max, min}).
 -record(scan_result2, {x2=0, x3=0, x4=0}).
 
-
+-spec get_statistics(term()) -> term().
 get_statistics([_,_,_,_,_|_] = Values) ->
     Scan_res = scan_values(Values),
     Scan_res2 = scan_values2(Values, Scan_res),
@@ -153,6 +153,7 @@ report_subset(Items, N, SortedValues, Scan_res, Scan_res2) ->
          (n) -> {n, N}
       end, Items).
 
+-spec get_statistics(term(), term()) -> term().
 get_statistics(Values, _) when length(Values) < ?STATS_MIN ->
     0.0;
 get_statistics(_, Values) when length(Values) < ?STATS_MIN ->
